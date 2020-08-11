@@ -5,17 +5,10 @@ provider "aws" {
 
 
 module "springboot-spa" {
-   // access_key =  
-   // secret_key =   
-    source = "git::https://github.com/yogmangela/terra-modules//ec2"
-    key_name="yogmicroservices"
-    security_groups=["OpenToAllTraffic"]
-    tags={
-      Name = "springboot-spa"
-    }
-}
-
-module "mongoDB" {
-  source = "git::https://github.com/yogmangela/terra-modules//mongoDB"
-  
+    source           = "git::https://github.com/yogmangela/terra-modules//ec2"
+    key_name         ="yogmicroservices"
+    security_groups  =["OpenToAllTraffic"]
+    access_key       =    //"your access_key"
+    secret_key       =    // "your secret_key"
+    ami="ami-07d9160fa81ccffb5"
 }
