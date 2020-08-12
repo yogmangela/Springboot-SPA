@@ -19,6 +19,7 @@ module "springboot-spa" {
     security_groups  =["your existing SG"]
     access_key       =   //"your access_key"
     secret_key       =   // "your secret_key"
+    count            = 2
 }
 
 ```
@@ -58,4 +59,41 @@ ec2-NN-NN-NN-NN.eu-west-1.compute.amazonaws.com:8080
 
 ### Stage 2. To Install MongoDB
 
-# 
+# Go to Ec2 instance and follow below instruction:
+
+sudo -i
+vi /etc/yum.repos.d/mongodb-org-4.4.repo
+
+add 
+
+```
+[mongodb-org-4.4]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2/mongodb-org/4.4/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://www.mongodb.org/static/pgp/server-4.4.asc
+```
+
+press ESC key and type ":wq!" to save and come out of the vi editor
+
+```
+sudo yum install -y mongodb-org
+
+sudo yum install -y mongodb-org-4.4.0 mongodb-org-server-4.4.0 mongodb-org-shell-4.4.0 mongodb-org-mongos-4.4.0 mongodb-org-tools-4.4.0
+
+ps --no-headers -o comm 1
+
+sudo systemctl start mongod
+sudo systemctl daemon-reload
+sudo systemctl status mongod
+
+```
+finall type ``mongo`` to go to db shell.
+
+# see below:
+
+![Springboot app running](/images/MongoDB.PNG)
+
+### note: springboot and MongoDb are not connected yet. You will have to pass ENV variable in-order for you to connect stringboot and MongoDB.
+ 
